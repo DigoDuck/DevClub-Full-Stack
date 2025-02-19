@@ -1,0 +1,17 @@
+{
+  "name": "devclub-full-stack",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "Diogo Ribeiro",
+    "url": "https://github.com/DigoDuck"
+  },
+  "license": "ISC",
+  "description": "DevBurger API.",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
