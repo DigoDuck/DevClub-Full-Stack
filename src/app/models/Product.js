@@ -6,7 +6,14 @@ class Product extends Model {
       {
         name: Sequelize.STRING,
         price: Sequelize.DECIMAL(10, 2),
-        category: Sequelize.STRING,
+        category_id: {
+          type: Sequelize.UUID,
+          allowNull: true,
+          references: {
+            model: 'categories',
+            key: 'id',
+          },
+        },
         path: Sequelize.STRING,
         url: {
           type: Sequelize.VIRTUAL,

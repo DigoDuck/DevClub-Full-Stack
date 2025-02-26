@@ -1,4 +1,10 @@
 [
   "20250221002732-create-users-table.js",
-  "20250225170241-create-products-table.js"
+  "20250225170241-create-products-table.js",
+  "20250226154041-create-categories-table.js",
+  "20230221002732-create-users-table.js",
+  "20230225170241-create-products-table.js",
+  "20230226154041-create-categories-table.js",
+  "20230226170148-add-category-id-column.js",
+  "20250226173135-remove-categories-column.js"
 ]

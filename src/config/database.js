@@ -14,7 +14,7 @@ module.exports = {
   },
   migrationStorageTableName: "sequelize_meta",
   seederStorageTableName: "sequelize_data",
-  migrationStorage: "json",
+  migrationStorage: "sequelize",
   migrations: {
     path: path.resolve(__dirname, "../database/migrations"),
     pattern: /\.js$/,
