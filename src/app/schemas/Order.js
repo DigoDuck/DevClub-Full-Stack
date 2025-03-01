@@ -3,11 +3,11 @@ import mongoose from "mongoose";
 const OrderSchema = new mongoose.Schema({
   user: {
     id: {
-      type: string,
+      type: String,
       required: true,
     },
     name: {
-      type: string,
+      type: String,
       required: true,
     },
   },
@@ -43,7 +43,10 @@ const OrderSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  timestamps: true,
-});
+},
+{
+    timestamps: true,
+},
+);
 
 export default mongoose.model("Order", OrderSchema);

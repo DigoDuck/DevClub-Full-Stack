@@ -13,6 +13,7 @@ function authMiddleware(req, res, next) {
   try {
     const decoded = jwt.verify(token, authConfig.secret);
     req.userId = decoded.id;
+    req.userName = decoded.name;
 } catch (err) {
     return res.status(401).json({ error: "Token invalid" });
 }
