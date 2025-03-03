@@ -67,7 +67,7 @@ class CategoryController {
         .status(400)
         .json({ message: "Make sure category ID is correct" });
     }
-
+ 
     let path;
     if (req.file) {
       path = req.file.filename;
