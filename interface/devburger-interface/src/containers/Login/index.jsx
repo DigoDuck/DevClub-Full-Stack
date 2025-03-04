@@ -1,10 +1,12 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
+import { toast } from "react-toastify";
 
 import * as S from "./styles";
 import Logo from "../../assets/logo.svg";
 import { Button } from "../../components/Button";
+import { api } from "../../services/api";
 
 export function Login() {
   const schema = yup
@@ -28,7 +30,21 @@ export function Login() {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    const response = await toast.promise(
+      api.post("/session", {
+        email: data.email,
+        password: data.password,
+      }),
+      {
+        pending: "Verificando seus dados",
+        success: "Seja Bem-Vindo(a) 👌",
+        error: "Dados Incorretos 🤯",
+      },
+    );
+
+    console.log(response);
+  };
 
   return (
     <S.Container>
@@ -44,13 +60,15 @@ export function Login() {
           <S.InputContainer>
             <label>Email</label>
             <input type="email" {...register("email")} />
-            {errors.email && <p>{errors?.email?.message}</p>} {/* Exibir a mensagem de erro */}
+            {errors.email && <p>{errors?.email?.message}</p>}{" "}
+            {/* Exibir a mensagem de erro */}
           </S.InputContainer>
 
           <S.InputContainer>
             <label>Senha</label>
             <input type="password" {...register("password")} />
-            {errors.password && <p>{errors?.password?.message}</p>} {/* Exibir a mensagem de erro */}
+            {errors.password && <p>{errors?.password?.message}</p>}{" "}
+            {/* Exibir a mensagem de erro */}
           </S.InputContainer>
           <Button type="submit">Entrar</Button>
           <p>
