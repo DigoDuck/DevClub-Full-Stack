@@ -1,16 +1,17 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
 import { toast } from "react-toastify";
+import * as yup from "yup";
 
 import * as S from "./styles";
 import Logo from "../../assets/logo.svg";
 import { Button } from "../../components/Button";
 import { api } from "../../services/api";
 
-export function Login() {
+export function Register() {
   const schema = yup
     .object({
+      name: yup.string().required("O nome é obrigatório"),
       email: yup
         .string()
         .email("Email inválido")
@@ -19,6 +20,10 @@ export function Login() {
         .string()
         .min(6, "A senha deve ter no mínimo 6 caracteres")
         .required("Digite uma senha"),
+      confirmPassword: yup
+        .string()
+        .oneOf([yup.ref("password")], "As senhas devem ser iguais")
+        .required("Confirme a sua senha"),
     })
     .required();
 
@@ -31,19 +36,28 @@ export function Login() {
   });
 
   const onSubmit = async (data) => {
-    const response = await toast.promise(
-      api.post("/session", {
-        email: data.email,
-        password: data.password,
-      }),
-      {
-        pending: "Verificando seus dados",
-        success: "Seja Bem-Vindo(a) 👌",
-        error: "Dados Incorretos 🤯",
+    try {
+      const { status } = await api.post(
+        "/users",
+        {
+          name: data.name,
+          email: data.email,
+          password: data.password,
+        },
+        {
+          validateStatus: () => true,
+        }
+      );
+      if (status === 200 || status === 201) {
+        toast.success("Conta criada com sucesso");
+      } else if (status === 409) {
+        toast.error("Email já cadastrado! Faça login para continuar");
+      } else {
+        throw new Error();
       }
-    );
-
-    console.log(response);
+    } catch (error) {
+      toast.error("😬 Falha no Sistema! Tente novamente mais tarde");
+    }
   };
 
   return (
@@ -52,11 +66,15 @@ export function Login() {
         <img src={Logo} alt="logo-devburger" />
       </S.LeftContainer>
       <S.RightContainer>
-        <S.Title>
-          Olá, seja bem vindo ao <span>Dev Burguer!</span>
-          <br /> Acesse com seu <span> Login e senha.</span>
-        </S.Title>
+        <S.Title>Criar Conta</S.Title>
         <S.Form onSubmit={handleSubmit(onSubmit)}>
+          <S.InputContainer>
+            <label>Nome</label>
+            <input type="text" {...register("name")} />
+            {errors.name && <p>{errors?.name?.message}</p>}{" "}
+            {/* Exibir a mensagem de erro */}
+          </S.InputContainer>
+
           <S.InputContainer>
             <label>Email</label>
             <input type="email" {...register("email")} />
@@ -71,9 +89,18 @@ export function Login() {
             {/* Exibir a mensagem de erro */}
           </S.InputContainer>
 
-          <Button type="submit">Entrar</Button>
+          <S.InputContainer>
+            <label>Confirmar Senha</label>
+            <input type="password" {...register("confirmPassword")} />
+            {errors.confirmPassword && (
+              <p>{errors?.confirmPassword?.message}</p>
+            )}{" "}
+            {/* Exibir a mensagem de erro */}
+          </S.InputContainer>
+
+          <Button type="submit">Criar Conta</Button>
           <p>
-            Não possui conta? <a>Clique aqui.</a>
+            Já possui conta? <a>Clique aqui.</a>
           </p>
         </S.Form>
       </S.RightContainer>
