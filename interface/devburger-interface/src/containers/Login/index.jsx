@@ -33,11 +33,11 @@ export function Login() {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = async (data) => {
-    const response = await toast.promise(
+  const onSubmit = async (formdata) => {
+    const {data} = await toast.promise(
       api.post("/session", {
-        email: data.email,
-        password: data.password,
+        email: formdata.email,
+        password: formdata.password,
       }),
       {
         pending: "Verificando seus dados",
@@ -53,7 +53,7 @@ export function Login() {
       }
     );
 
-    console.log(response);
+    localStorage.setItem("token", data.token);
   };
 
   return (
