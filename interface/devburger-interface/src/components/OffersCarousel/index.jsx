@@ -5,18 +5,19 @@ import "react-multi-carousel/lib/styles.css";
 import { api } from "../../services/api";
 import * as S from "./styles";
 
-export function CategoriesCarousel() {
-  const [categories, setCategories] = useState([]);
+export function OffersCarousel() {
+  const [offers, setOffers] = useState([]);
 
   useEffect(() => {
-    async function loadCategories() {
-      const response = await api.get("/categories");
+    async function loadProducts() {
+      const { data } = await api.get("/products");
 
-      setCategories(response.data);
-      console.log(response.data);
+      const onlyOffers = data.filter((product) => product.offer);
+
+      setOffers(onlyOffers);
     }
 
-    loadCategories();
+    loadProducts();
   }, []);
 
   const responsive = {
@@ -40,7 +41,7 @@ export function CategoriesCarousel() {
 
   return (
     <S.Container>
-      <S.Title>CATEGORIAS</S.Title>
+      <S.Title>OFERTAS DO DIA</S.Title>
 
       <Carousel
         responsive={responsive}
@@ -48,9 +49,9 @@ export function CategoriesCarousel() {
         partialVisible={false}
         itemClass="carousel-item"
       >
-        {categories.map((category) => (
-          <S.ContainerItems key={category.id} imageUrl={category.url}>
-            <p> {category.name} </p>
+        {offers.map((product) => (
+          <S.ContainerItems key={product.id} imageUrl={product.url}>
+            <p> {product.name} </p>
           </S.ContainerItems>
         ))}
       </Carousel>
