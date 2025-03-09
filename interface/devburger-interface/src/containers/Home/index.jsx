@@ -9,10 +9,10 @@ export function Home() {
         <h1>Bem-vindo(a)!</h1>
       </S.Banner>
       <S.Container>
-        <S.Content>
+        <div>
           <CategoriesCarousel />
           <OffersCarousel />
-        </S.Content>
+        </div>
       </S.Container>
     </main>
   );

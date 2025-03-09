@@ -26,6 +26,3 @@ export const Container = styled.section`
     url("${Background}");
 `;
 
-export const Content = styled.div`
-  padding-bottom: 70px;
-`;
