@@ -76,25 +76,6 @@ export const CategoryButton = styled(Link)`
   `}
 `;
 
-export const BackButton = styled.button`
-  background-color:rgba(150, 88, 166, 0.12);
-  color: white;
-  padding: 12px 30px;
-  border-radius: 18px;
-  font-size: 17px;
-  font-weight: bold;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  cursor: pointer;
-  border: 1px solid white;
-  transition: background-color 0.5s;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-
-  &:hover {
-    background-color:rgba(255, 86, 34, 0.62);
-  }
-`;
 
 export const ProductsContainer = styled.div`
   display: grid;

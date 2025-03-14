@@ -72,9 +72,6 @@ export function Menu() {
         </h1>
       </S.Banner>
 
-      <S.BackButton onClick={() => navigate("/")}><i class="fas fa-home"></i>
-      </S.BackButton>
-
       <S.CategoryMenu>
         {categories.map((category) => (
           <S.CategoryButton
