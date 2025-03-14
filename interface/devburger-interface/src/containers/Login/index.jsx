@@ -6,11 +6,13 @@ import { useNavigate } from "react-router-dom";
 
 import Logo from "../../assets/logo.svg";
 import { Button } from "../../components/Button";
+import { useUser } from "../../hooks/UserContext";
 import { api } from "../../services/api";
 import * as S from "./styles";
 
 export function Login() {
   const navigate = useNavigate();
+  const { putUserData } = useUser();
 
   const schema = yup
     .object({
@@ -33,11 +35,11 @@ export function Login() {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = async (formdata) => {
-    const {data} = await toast.promise(
+  const onSubmit = async (data) => {
+    const {data: userData} = await toast.promise(
       api.post("/session", {
-        email: formdata.email,
-        password: formdata.password,
+        email: data.email,
+        password: data.password,
       }),
       {
         pending: "Verificando seus dados",
@@ -53,7 +55,8 @@ export function Login() {
       }
     );
 
-    localStorage.setItem("token", data.token);
+    putUserData(userData);
+    // localStorage.setItem("token", userData.token);
   };
 
   return (
