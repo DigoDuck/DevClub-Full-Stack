@@ -4,16 +4,17 @@ import "react-multi-carousel/lib/styles.css";
 
 import { api } from "../../services/api";
 import * as S from "./styles";
+import { useNavigate } from "react-router-dom";
 
 export function CategoriesCarousel() {
   const [categories, setCategories] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function loadCategories() {
       const response = await api.get("/categories");
 
       setCategories(response.data);
-      console.log(response.data);
     }
 
     loadCategories();
@@ -50,7 +51,15 @@ export function CategoriesCarousel() {
       >
         {categories.map((category) => (
           <S.ContainerItems key={category.id} imageUrl={category.url}>
-            <p> {category.name} </p>
+            <S.CategoryButton 
+            onClick={() => {
+              navigate(
+                {
+                  pathname: "/cardapio",
+                  search: `?categoria=${category.id}`,
+                });
+            }}
+            >{category.name}</S.CategoryButton>
           </S.ContainerItems>
         ))}
       </Carousel>

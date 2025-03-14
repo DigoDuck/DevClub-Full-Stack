@@ -25,4 +25,3 @@ export const Container = styled.section`
     ),
     url("${Background}");
 `;
-

@@ -3,7 +3,6 @@ import * as S from "./styles";
 import { CartButton } from "../CartButton";
 
 export function CardProduct({ product }) {
-  console.log(product);
   return (
     <S.Container>
       <S.CardImage src={product.url} alt={product.name} />
