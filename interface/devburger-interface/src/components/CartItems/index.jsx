@@ -5,7 +5,8 @@ import TrashIcon from "../../assets/trash.svg";
 import * as S from "./styles";
 
 export function CartItems() {
-  const { cartProducts, increaseProduct, decreaseProduct, deleteProduct } = useCart();
+  const { cartProducts, increaseProduct, decreaseProduct, deleteProduct } =
+    useCart();
   return (
     <Table.Root>
       <Table.Header>
@@ -49,7 +50,11 @@ export function CartItems() {
             </Table.Tr>
           ))
         ) : (
-          <S.EmptyCart>Carrinho Vazio</S.EmptyCart>
+          <Table.Tr>
+            <Table.Td colSpan="6">
+              <S.EmptyCart>Carrinho Vazio</S.EmptyCart>
+            </Table.Td>
+          </Table.Tr>
         )}
       </Table.Body>
     </Table.Root>
