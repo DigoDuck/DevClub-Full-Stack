@@ -4,7 +4,6 @@ import { api } from "../../services/api";
 import { formatPrice } from "../../utils/formatPrice";
 import { CardProduct } from "../../components/CardProduct";
 import { useLocation, useNavigate } from "react-router-dom";
-import { set } from "react-hook-form";
 
 export function Menu() {
   const [categories, setCategories] = useState([]);

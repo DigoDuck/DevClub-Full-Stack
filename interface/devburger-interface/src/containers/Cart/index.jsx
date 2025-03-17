@@ -1,6 +1,7 @@
 import * as S from "./styles";
 
 import Logo from "../../assets/logo.svg";
+import { CartItems } from "../../components/CartItems";
 
 export function Cart() {
     return(
@@ -10,8 +11,8 @@ export function Cart() {
             </S.Banner>
             <S.Title>Checkout - Pedido</S.Title>
             <S.Content>
-                {/* <CartItems/>
-                <CartResume/> */}
+                 <CartItems/>
+                {/*<CartResume/> */}
             </S.Content>
         </S.Container>
     )

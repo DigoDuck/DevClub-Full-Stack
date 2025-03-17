@@ -14,6 +14,7 @@ export const CartProvider = ({ children }) => {
     const cartIndex = cartProducts.findIndex((prd) => prd.id === product.id);
 
     let newProductsInCart = [];
+    
     if (cartIndex >= 0) {
       newProductsInCart = cartProducts;
 
@@ -30,7 +31,10 @@ export const CartProvider = ({ children }) => {
     updateLocalStorage(newProductsInCart);
   };
 
-  const clearCart = () => {};
+  const clearCart = () => {
+    setCartProducts([]);
+    updateLocalStorage([]);
+  };
 
   const deleteProduct = (productId) => {
     const newCart = cartProducts.filter((prd) => prd.id !== productId);
