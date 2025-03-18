@@ -41,7 +41,7 @@ export const HeaderLink = styled(Link)`
   color: ${(props) => (props.$isActive ? "#ffa500" : "white")};
   border-bottom: 2px solid ${(props) => (props.$isActive ? "#ffa500" : "transparent")};
   text-decoration: none;
-  font-size: 14px;
+  font-size: 16px;
   transition: color 0.4s;
 
   &:hover {
@@ -53,6 +53,7 @@ export const Options = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 1px;
   gap: 48px;
 `;
 
