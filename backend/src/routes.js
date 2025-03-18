@@ -7,6 +7,7 @@ import SessionController from "./app/controllers/SessionController";
 import ProductController from "./app/controllers/ProductController";
 import CategoryController from "./app/controllers/CategoryController";
 import OrderController from "./app/controllers/OrderController";
+import CreatePaymentIntent from "./app/controllers/stripe/CreatePaymentIntentController";
 
 const routes = new Router();
 
@@ -29,5 +30,6 @@ routes.post("/orders", OrderController.store);
 routes.get("/orders", OrderController.index);
 routes.put("/orders/:id", OrderController.update);
 
+routes.post("/create-payment-intent", CreatePaymentIntent.store);
 
 export default routes;
