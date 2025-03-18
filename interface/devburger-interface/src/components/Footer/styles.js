@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-display: flex;
-  background-color: #1f1f1f;
+  display: flex;
+  background-color: ${(props) => props.theme.mainBlack};
   color: #fff;
   height: 30px;
   width: 100vw;
@@ -10,7 +10,7 @@ display: flex;
   align-items: center;
 
   p {
-    color: #ffa500;
+    color: ${(props) => props.theme.orange};
     font-size: 15px;
     font-weight: lighter;
   }

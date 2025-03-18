@@ -6,7 +6,8 @@ export const Container = styled.div`
   background: linear-gradient(
       rgba(255, 255, 255, 0.7),
       rgba(255, 255, 255, 0.7)
-    ), url(${Backgorund});
+    ),
+    url(${Backgorund});
   width: 100%;
   background-color: #f0f0f0;
   min-height: 100vh;
@@ -14,7 +15,7 @@ export const Container = styled.div`
 
 export const Banner = styled.div`
   background-image: url(${Texture});
-  background-color: #1f1f1f;
+  background-color: ${(props) => props.theme.mainBlack};
   background-size: cover;
   background-position: center;
   display: flex;

@@ -40,7 +40,7 @@ export const RightContainer = styled.div`
   max-width: 50%;
 
   p {
-    color: white;
+    color: ${(props) => props.theme.white};
     font-size: 15px;
     font-weight: 800;
     margin: auto;
@@ -87,7 +87,7 @@ export const InputContainer = styled.div`
   label {
     font-size: 18px;
     font-weight: 600;
-    color: white;
+    color: ${(props) => props.theme.white};
   }
   p {
     font-size: 14px;
@@ -101,4 +101,4 @@ export const InputContainer = styled.div`
 export const Link = styled(ReactLink)`
   text-decoration: none;
   color: white;
-`
+`;

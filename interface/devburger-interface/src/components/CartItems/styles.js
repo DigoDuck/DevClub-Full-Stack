@@ -17,16 +17,16 @@ export const ButtonGroup = styled.div`
     justify-content: center;
     height: 30px;
     width: 30px;
-    color: white;
+    color: ${(props) => props.theme.white};
     border-radius: 4px;
     background-color: orange;
     transition: all 0.4s;
     border: none;
 
-
     &:hover {
       background-color: #ff8c00;
-  }}
+    }
+  }
 `;
 
 export const EmptyCart = styled.p`

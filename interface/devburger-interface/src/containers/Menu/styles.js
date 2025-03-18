@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export const Container = styled.div`
   width: 100%;
   min-height: 100vh;
-  background-color: #f0f0f0;
+  background-color: ${(props) => props.theme.white};
   background: linear-gradient(
       rgba(255, 255, 255, 0.7),
       rgba(255, 255, 255, 0.7)
@@ -23,7 +23,7 @@ export const Banner = styled.div`
   position: relative;
 
   background: url("${BannerHamburguer}"), no-repeat;
-  background-color: #1f1f1f;
+  background-color: ${(props) => props.theme.mainBlack};
   background-position: center;
   background-size: cover;
 
@@ -32,7 +32,7 @@ export const Banner = styled.div`
     font-size: 80px;
     line-height: 60px;
     position: absolute;
-    color: #ffff;
+    color: ${(props) => props.theme.white};
 
     right: 20%;
     top: 30%;
@@ -40,7 +40,7 @@ export const Banner = styled.div`
 
   span {
     display: block;
-    color: #fff;
+    color: ${(props) => props.theme.white};
     font-size: 20px;
   }
 `;
@@ -55,7 +55,7 @@ export const CategoryMenu = styled.div`
 export const CategoryButton = styled(Link)`
   padding: 10px 20px;
   border: none;
-  background-color:rgba(255, 86, 34, 0.97);
+  background-color: rgba(255, 86, 34, 0.97);
   color: white;
   font-size: 16px;
   text-decoration: none;
@@ -75,7 +75,6 @@ export const CategoryButton = styled(Link)`
     background-color:rgb(197, 62, 20);
   `}
 `;
-
 
 export const ProductsContainer = styled.div`
   display: grid;
