@@ -54,7 +54,7 @@ export const ContainerItems = styled.div`
   cursor: grab;
 `;
 
-export const CategoryButton = styled(Link)`
+export const CategoryButton = styled.button`
   color: ${(props) => props.theme.white};
   background-color: rgba(0, 0, 0, 0.5);
   padding: 10px 30px;
@@ -63,6 +63,7 @@ export const CategoryButton = styled(Link)`
   font-weight: bold;
   margin-top: 50px;
   font-weight: 500;
+  border: none;
   text-decoration: none;
   transition: background-color 0.8s ease;
 

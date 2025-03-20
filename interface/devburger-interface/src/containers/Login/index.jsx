@@ -36,7 +36,7 @@ export function Login() {
   });
 
   const onSubmit = async (data) => {
-    const {data: userData} = await toast.promise(
+    const { data: userData } = await toast.promise(
       api.post("/session", {
         email: data.email,
         password: data.password,
@@ -46,8 +46,12 @@ export function Login() {
         success: {
           render() {
             setTimeout(() => {
-              navigate("/")
-            },2000);
+              if (userData?.admin) {
+                navigate("/admin/pedidos");
+              } else {
+                navigate("/");
+              }
+            }, 2000);
             return "Seja bem vindo(a) 👌";
           },
         },
