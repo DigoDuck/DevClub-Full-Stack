@@ -16,12 +16,25 @@ import { ProductImage, SelectStatus } from "./styles";
 import { orderStatusOptions } from "./OrderStatus";
 import { api } from "../../../services/api";
 
-export function Row(props) {
-  const { row } = props;
+export function Row({ row, setOrders, orders }) {
   const [open, setOpen] = useState(false);
+  const [loading, setLoanding] = useState(false);
 
   async function newStatusOrder(id, status) {
-    await api.put(`orders/${id}`, { status });
+    try {
+      await api.put(`orders/${id}`, { status });
+      setLoanding(true);
+
+      const newOrders = orders.map((order) =>
+        order._id === id ? { ...order, status } : order
+      );
+
+      setOrders(newOrders);
+    } catch {
+      console.error(err);
+    } finally {
+      setLoanding(false);
+    }
   }
 
   return (
@@ -49,6 +62,8 @@ export function Row(props) {
               (status) => status.value === row.status || null
             )}
             onChange={(status) => newStatusOrder(row.orderId, status.value)}
+            isLoading={loading}
+            menuPortalTarget={document.body}
           />
         </TableCell>
       </TableRow>
@@ -91,7 +106,9 @@ export function Row(props) {
   );
 }
 
-Row.propType = {
+Row.propTypes = {
+  orders: PropTypes.array.isRequired,
+  setOrders: PropTypes.func.isRequired,
   row: PropTypes.shape({
     orderId: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,

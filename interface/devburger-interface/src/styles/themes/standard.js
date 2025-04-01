@@ -3,6 +3,7 @@ export const standardTheme = {
   darkPurple: "#5c2669",
   secondDarkPurple: "#6f357c",
   orange: "#ffa500",
+  orangeDark:"#ff7300",
   mainBlack: "#1f1f1f",
   black: "#363636",
   secondBlack: "#484848",
