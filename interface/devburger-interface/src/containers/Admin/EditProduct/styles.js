@@ -7,14 +7,14 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: ${(props) => props.theme.background};
+  background-color: ${(props) => props.theme.secondWhite};
 `;
 
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  background: ${(props) => props.theme.formBackground};
+  background: ${(props) => props.theme.darkWhite};
   padding: 24px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -101,11 +101,11 @@ export const SubmitButton = styled(Button)`
 `;
 
 export const ErrorMessage = styled.span`
-    color: ${(props) => props.theme.darkRed};
-    font-size: 14px;
-    line-height: 80%;
-    font-weight: 600;
-    margin-top: 2px;
+  color: ${(props) => props.theme.darkRed};
+  font-size: 14px;
+  line-height: 80%;
+  font-weight: 600;
+  margin-top: 2px;
 `;
 
 export const ContainerCheckbox = styled.div`

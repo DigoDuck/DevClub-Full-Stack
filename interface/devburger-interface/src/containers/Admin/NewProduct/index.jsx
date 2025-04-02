@@ -6,6 +6,7 @@ import { Image } from "@phosphor-icons/react/dist/ssr";
 import * as S from "./styles";
 import { useEffect, useState } from "react";
 import { api } from "../../../services/api";
+import { useNavigate } from "react-router-dom";
 
 const schema = yup.object({
   name: yup.string().required("Digite o nome do produto"),
@@ -15,6 +16,7 @@ const schema = yup.object({
     .required()
     .typeError("Digite o preço do produto"),
   category: yup.object().required("Escolha uma categoria do produto"),
+  offer: yup.bool(),
   file: yup
     .mixed()
     .test("required", "Escolha um arquivo para continuar", (value) => {
@@ -35,6 +37,8 @@ const schema = yup.object({
 export function NewProduct() {
   const [fileName, setFileName] = useState(null);
   const [categories, setCategories] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function loadCategories() {
@@ -57,22 +61,26 @@ export function NewProduct() {
 
   const onSubmit = async (data) => {
     const productFormData = new FormData();
-  
+
     productFormData.append("name", data.name);
     productFormData.append("price", data.price * 100);
     productFormData.append("category_id", data.category?.id || "");
-  
+    productFormData.append("offer", data.offer);
+
     if (data.file && data.file.length > 0) {
       productFormData.append("file", data.file[0]);
     }
-  
+
     await toast.promise(api.post("/products", productFormData), {
       pending: "Adicionando Produto...",
       success: "Produto Criado com Sucesso",
       error: "Erro ao Adicionar o Produto",
     });
+
+    setTimeout(() => {
+      navigate("/admin/produtos");
+    }, 2000);
   };
-  
 
   return (
     <S.Container>
@@ -125,6 +133,16 @@ export function NewProduct() {
           />
 
           <S.ErrorMessage>{errors?.category?.message}</S.ErrorMessage>
+        </S.InputGroup>
+
+        <S.InputGroup>
+          <S.ContainerCheckbox>
+            <input
+              type="checkbox"
+              {...register("offer")}
+            />
+            <S.Label>Produto em Oferta?</S.Label>
+          </S.ContainerCheckbox>
         </S.InputGroup>
 
         <S.SubmitButton>Adicionar Produto</S.SubmitButton>
